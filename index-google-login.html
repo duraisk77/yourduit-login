@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Google</title>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_AUTH_DOMAIN",
+      projectId: "YOUR_PROJECT_ID",
+    };
+    firebase.initializeApp(firebaseConfig);
+    const provider = new firebase.auth.GoogleAuthProvider();
+    function login() {
+      firebase.auth().signInWithPopup(provider).then(result => {
+        const user = result.user;
+        document.getElementById("info").innerText = user.email + " | " + user.displayName;
+        window.WebViewString = user.email + " | " + user.displayName;
+      });
+    }
+  </script>
+</head>
+<body>
+  <h2>Login Guna Google</h2>
+  <button onclick="login()">Login</button>
+  <p id="info"></p>
+</body>
+</html>
